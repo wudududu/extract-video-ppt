@@ -82,7 +82,9 @@ def start():
 
                 if isWrite:
                     name = DEFAULT_PATH + '/frame'+ second2hms(math.ceil(readedFrame / FPS)) + '-' + str(lastDegree) + '.jpg'
-                    cv2.imwrite(name, frame)
+                    if not cv2.imwrite(name, frame):
+                        print('write file failed !')
+                        exit(1)
                     lastFrame = frame
                     
             else:
@@ -140,7 +142,7 @@ def clearEnv():
 def second2hms(second):
     m, s = divmod(second, 60)
     h, m = divmod(m, 60)
-    return ("%02d:%02d:%02d" % (h, m, s))
+    return ("%02d.%02d.%02d" % (h, m, s))
 
 if __name__ == '__main__':
     main()

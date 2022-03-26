@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='extract-video-ppt',
-    version='0.2.4',
+    version='1.0.0',
     author="wudu",
     author_email="296525335@qq.com",
     description="support export ppt from a video",

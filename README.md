@@ -8,7 +8,10 @@ If The video content is included ppt, then this tool can extract the ppt from th
 pip install extract-video-ppt
 
 # or local
-pip ./setup.py install
+python ./setup.py install
+
+# or local user
+python ./setup.py install --user
 ```
 
 ### useage
