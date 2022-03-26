@@ -1,8 +1,15 @@
 ## extract ppt from a video
 
-If The video form is taught through ppt, then this tool can extract the ppt from the video and export a pdf file.
+If The video content is included ppt, then this tool can extract the ppt from the video and export a pdf file. Or you can just transform video to pdf -,-.
 
-Format of image names in the export pdf: frame${timestamp}-${similarity}.jpg
+## install
+``` shell
+# install from pypi
+pip install extract-video-ppt
+
+# or local
+pip ./setup.py install
+```
 
 ### useage
 ``` shell
@@ -16,7 +23,7 @@ evp --similarity 0.6 --pdfname hello.pdf ./ ./test.mp4
 
 ### example
 ``` shell
-python3 ./video2ppt/video2ppt.py --similarity 0.6 --pdfname hello.pdf ./demo ./demo/demo.mp4
+evp --similarity 0.6 --pdfname hello.pdf ./demo ./demo/demo.mp4
 ```
 
 ### frame detail

@@ -4,8 +4,8 @@ import os
 import shutil
 import click
 
-from compare import compareImg
-from images2pdf import images2pdf
+from .compare import compareImg
+from .images2pdf import images2pdf
 
 DEFAULT_PATH = './.extract-video-ppt-tmp-data'
 DEFAULT_PDFNAME = 'output.pdf'
