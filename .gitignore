@@ -1,0 +1,5 @@
+__pycache__/*
+build/*
+dist/*
+extract_video_ppt.egg-info/*
+video2ppt/__pycache__/*
