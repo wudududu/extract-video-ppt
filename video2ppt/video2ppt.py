@@ -48,8 +48,7 @@ def main(
     END_FRAME = hms2second(end_frame)
 
     if START_FRAME >= END_FRAME:
-        print('start <= end can not work')
-        exit(1)
+        exitByPrint('start <= end can not work')
 
     prepare()
     start()
@@ -67,20 +66,17 @@ def start():
     TOTAL_FRAME= int(vcap.get(7))
 
     if TOTAL_FRAME == 0:
-        print('Please check if the video url is correct')
-        clearEnv()
-        exit(1)
+        exitByPrint('Please check if the video url is correct')
 
     CV_CAP_PROP_FRAME_WIDTH = int(vcap.get(cv2.CAP_PROP_FRAME_WIDTH))
     CV_CAP_PROP_FRAME_HEIGHT = int(vcap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
     if START_FRAME > TOTAL_FRAME / FPS:
-        print('video duration is not support')
-        exit(1)
+        exitByPrint('video duration is not support')
     
     # set start frame
     vcap.set(cv2.CAP_PROP_POS_FRAMES, START_FRAME * FPS)
-    frameCount = (END_FRAME - START_FRAME) * FPS
+    frameCount = ((int(TOTAL_FRAME / FPS) if END_FRAME == INFINITY else END_FRAME) - START_FRAME) * FPS
 
     lastDegree = 0
     lastFrame = []
@@ -111,8 +107,8 @@ def start():
                 if isWrite:
                     name = DEFAULT_PATH + '/frame'+ second2hms(math.ceil((readedFrame + START_FRAME * FPS) / FPS)) + '-' + str(lastDegree) + '.jpg'
                     if not cv2.imwrite(name, frame):
-                        print('write file failed !')
-                        exit(1)
+                        exitByPrint('write file failed !')
+
                     lastFrame = frame
                     
             else:
@@ -130,8 +126,7 @@ def prepare():
             os.makedirs(OUTPUTPATH)
 
     except OSError as error:
-        print (error)
-        exit(1)
+        exitByPrint(error)
 
     try:
         
@@ -142,8 +137,7 @@ def prepare():
             os.makedirs(DEFAULT_PATH)
 
     except OSError as error:
-        print (error)
-        exit(1)
+        exitByPrint(error)
 
 def exportPdf():
     images = os.listdir(DEFAULT_PATH)
@@ -163,6 +157,11 @@ def exportPdf():
     images2pdf(pdfPath, imagePaths, CV_CAP_PROP_FRAME_WIDTH, CV_CAP_PROP_FRAME_HEIGHT)
 
     shutil.copy(pdfPath, OUTPUTPATH)
+
+def exitByPrint(str):
+    print(str)
+    clearEnv()
+    exit(1)
 
 def clearEnv():
     shutil.rmtree(DEFAULT_PATH)
