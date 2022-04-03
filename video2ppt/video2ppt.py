@@ -48,7 +48,7 @@ def main(
     END_FRAME = hms2second(end_frame)
 
     if START_FRAME >= END_FRAME:
-        exitByPrint('start <= end can not work')
+        exitByPrint('start >= end can not work')
 
     prepare()
     start()
@@ -130,11 +130,8 @@ def prepare():
 
     try:
         
-        if os.path.exists(DEFAULT_PATH):
-            shutil.rmtree(DEFAULT_PATH)
-
-        if not os.path.exists(DEFAULT_PATH):
-            os.makedirs(DEFAULT_PATH)
+        clearEnv()
+        os.makedirs(DEFAULT_PATH)
 
     except OSError as error:
         exitByPrint(error)
@@ -164,7 +161,8 @@ def exitByPrint(str):
     exit(1)
 
 def clearEnv():
-    shutil.rmtree(DEFAULT_PATH)
+    if os.path.exists(DEFAULT_PATH):
+        shutil.rmtree(DEFAULT_PATH)
 
 def second2hms(second):
     m, s = divmod(second, 60)
