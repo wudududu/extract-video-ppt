@@ -19,14 +19,16 @@ python ./setup.py install --user
 # help info
 evp --help
 # example
-evp --similarity 0.6 --pdfname hello.pdf ./ ./test.mp4
+evp --similarity 0.6 --pdfname hello.pdf --start_frame 0:00:09 --end_frame 00:00:30 ./ ./test.mp4
 # similarity: The similarity between this frame and the previous frame is less than this value and this frame will be saveed, default: 0.6
 # pdfname: the name for export pdf 
+# start_frame: start frame time point, default = '00:00:00'
+# end_frame: end frame time point, default = 'INFINITY'
 ```
 
 ### example
 ``` shell
-evp --similarity 0.6 --pdfname hello.pdf ./demo ./demo/demo.mp4
+evp --similarity 0.6 --pdfname hello.pdf --start_frame 0:00:09 --end_frame 00:00:30 ./demo ./demo/demo.mp4
 ```
 
 ### frame detail
