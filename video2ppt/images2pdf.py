@@ -10,7 +10,7 @@ def images2pdf(outpath, images, w = 1920, h = 1080):
         pdf.add_page(orientation = 'L', format=size, same=False)
         pdf.set_font('helvetica', size = titleH)
         pdf.cell(w = 400, h = titleH, txt = os.path.basename(image), border = 1, align = 'C')
-        pdf.image(image, x = 0, y = titleH + 10, w = w, h = h, type = 'JPG')
+        pdf.image(name = image, x = 0, y = titleH + 10, w = w, h = h, type = 'JPG')
 
     pdf.output(outpath, "F")
     
